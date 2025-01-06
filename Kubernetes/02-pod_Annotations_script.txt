@@ -1,0 +1,18 @@
+[velocity@ip-172-31-7-36 ~]$ cat pod.yaml
+
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: velpod
+  annotations:
+    owner: shantanu
+    service_type: billing
+    description: this pod is running velocity billing application
+    class: velocity
+
+spec:
+  containers:
+    - name: vel-1
+      image: centos
+      command: [ "ping", "localhost" ]
