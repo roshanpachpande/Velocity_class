@@ -1,0 +1,23 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: velocityrs
+
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - {key: env, operator: In, values: [qa, dev, uat]}
+      - {key: domain, operator: NotIn, values: [telecom, banking]}
+
+  template:
+    metadata:
+      name: velpod
+      labels:
+        env: qa
+
+    spec:
+      containers:
+        - name: vel-1
+          image: centos
+          command: [ "ping", "localhost" ]

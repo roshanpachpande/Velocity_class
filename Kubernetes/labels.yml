@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: velpod
+  labels:
+    env: dev
+    domain: telecom
+
+spec:
+  containers:
+    - name: vel-1
+      image: centos
+      command: [ "ping", "localhost" ]
+

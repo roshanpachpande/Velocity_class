@@ -1,0 +1,11 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: velpod
+
+spec:
+  containers:
+    - name: vel-1
+      image: centos
+      command: [ "ping", "localhost" ]
+

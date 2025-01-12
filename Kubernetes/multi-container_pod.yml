@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: velpod
+  annotations:
+    owner: shantanu
+    service_type: billing
+    description: this pod is running velocity billing application
+    class: velocity
+
+spec:
+  containers:
+    - name: vel-1
+      image: centos
+      command: [ "ping", "localhost" ]
+
+    - name: vel-2
+      image: centos
+      command: [ "ping", "localhost" ]
+
+    - name: vel-3
+      image: centos
+      command: [ "ping", "localhost" ]
+
