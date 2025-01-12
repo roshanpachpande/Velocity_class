@@ -1,0 +1,212 @@
+whoami ------ to see the current user
+pwd ------ present/print working dir
+ls -----list content of directory
+ls -ltr
+-l=long list
+-t=time sorting
+-r=reverse order
+
+sudo su - username ----- superuser do switch user
+for root
+sudo su - 
+or
+sudo su - root
+
+for other user
+sudo su - username
+
+to logout press ctrld
+
+lscpu --------check cpu
+Free -h ------check free ram
+cd --- change directory
+cd destination_path
+cat > filename ------ cretes new file, press enter write your content, press enter and ctrld
+
+cat filename ----- to see the content of file
+
+rm -f filename ---- to delete the file
+-f=forcefully
+clear------ to clear terminal screen
+history ---- to check the history of executed commands
+date----- shows terminal date
+ifconfig ----- shows private ip
+Curl ifconfig.me -----shows public ip
+hostname --- shows private dns
+man command --- opens manual for the command and press q for quit
+Cat /etc/os-relase ----- show os version 
+touch file1  ---- creates blank files and also updates time stamp
+can create multiple files as well
+
+mkdir dir ---- to create a directory
+mkdir dir1 dir2 dir3
+
+mkdir -p aws/ec2/velocity ------ -p=parent directory
+rm -rf ----- to delete everthing both files and dir -r=recursive
+
+hidden file and dir
+
+mkdir .velocity
+touch .index.html  
+
+ls -ltra ---- -a=all
+
+vi editor
+1. command mode --- default mode to run commands
+2. insert mode --- to edit press i to activate and esc to exit to command mode
+
+:w  --- save
+:q/:q! ---  quit
+:wq/:wq!/:x/:x!  --- save and quit and here ! is for forcefully
+
+
+shiftg ---- end of file
+shifth --- 1st line
+o----- new line and insert mode
+dd --- delete line 
+long press d for delete everything
+x to delete char
+r to replace the char
+/pattern ---- to search pattern in file press n for next values
+
+cp filename /mnt/filename --- makes a copy of file
+cp -r dir1 /mnt/dir1 ---- makes a copy of directory
+-r=recursive mode for directory
+----above example is for put mode
+for get mode , go to the folder in which we have to copy lets say
+its /mnt
+cd /mnt
+
+cp -r /home/ec2-user/index.html .  ---- dot(.) represents current dir1
+
+mv index.html shantanu.html ---- move command used to rename and cut paste as well
+
+mv index.html /mnt
+
+same for directory
+
+grep -i pattern filenmae ---- find the pattern in file
+-i=case insensative
+
+grep -ic pattern filenmae ----
+-c=count
+
+wget url ----- donwload file/folder from internet
+
+wget https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip
+
+du -sh filename/dirname
+gives size of file or dir1
+-s=summerize
+-h=human readable
+
+unzip filename.zip ----- to extract zip
+zip -r dirname.zip dirname ------ to create a zip of a directory
+
+tar -cvf tarname.tar dirname ---- to create tar of directory
+-c=create
+-v=verbose
+-f=force
+
+tar -cvzf tarname.tar.gz dirname ---- creates tar and gzip (gzip is used for compression)
+-z=gzip
+
+tar -xvf tarname.tar ---- extract tar -x=extract
+tar -xvzf tarname.tar.gz ---- extract gz and tar
+
+only gz extract
+gunzip foldername.gz 
+
+
+uname --- show kernal -a=all
+uname -a --- all details 
+
+
+symbolic links
+1. ln (hardlink --- backup) ---
+
+ln filename /path/filename-backup --- it is syncronized backup
+
+doesnt not work for directory
+
+2. ln -s (softlink ---- shortcut)
+
+run the command where you want a shortcut
+
+
+ln -s /root/aws/ec2/vpc/test.html shortcutname
+
+to remove sc
+
+unlink shortcutname
+
+same for folder
+
+yum list --- to see the list of software packages
+yum list installed --- to see installed softwares
+yum list available ----- to see avaiilable softwares
+yum install tree -y ------ to install a software
+yum remove tree -y ----- to remove tree
+yum update tree -y ------ to update tree software
+
+yum update -y ---- kernal and all softwares are updated if update is present
+this is also called as "PATCHING"
+
+yum install httpd -y
+service httpd status  --- to check the daemon status
+service httpd start   --- to start httpd daemon
+service httpd stop
+service httpd restart
+
+to deploy index goto /var/www/html
+here create index.html and access from ec2 public ip
+top --- to check cpu, ram, process status
+also ps -ef to check process
+
+
+
+chkconfig httpd on --- automatically starts service after restart
+chkconfig httpd off
+
+User store in home --
+useradd username --- to add user
+passwd username ---- to set password
+/etc/passwd ---- here we can see user created
+
+groupadd groupname ---- creates groupadd
+/etc/group ----- can see the created group
+
+gpasswd -a username groupname ---- to add user to group
+gpasswd -M user1,user2,user3 groupname --- to add multiple users
+gpasswd -d user1 groupname --- remove user from group
+
+to give sudoer access add permissin in /etc/sudoers file SS given in chat.
+
+chmod -R 777 index.html
+r=read=4
+w=write=2
+x=execute=1
+
+rwx			rwx			rwx
+owner		group		other_users
+
+chown username filename 	---- to change user
+chgrp groupname filename ---- to change group
+
+
+----------------########---------------
+## EBS VOLUME COMMAND #####
+
+fdisk -l ---- to check storages
+lsblk --- to check mount points
+mkfs -t ext4 /dev/xvdf  ------ to create ext4 file systematic 
+mount /dev/xvdf /mnt --- to moutn to folder
+umount /dev/xvdf ---- to unmount fs ko
+Df -h  .     -----check storage (.) For current directory 
+lsblk -f  -----chek ext4 file system created or not
+-----------------##########-----------
+## httpd port change path ###
+Cd  /etc/httpd/conf.   - folder path for edit port number
+Vi  httpd.conf - edit this file for change port no
+
+Sed -i  ' s/80/90/g'. /etc/httpd/conf/httpd.conf. -------- change httpd prot no using command 
